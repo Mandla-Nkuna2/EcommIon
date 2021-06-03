@@ -1,4 +1,7 @@
+import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
+import { AlertController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart-modal',
@@ -6,10 +9,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-modal.page.scss'],
 })
 export class CartModalPage implements OnInit {
+  products = [];
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController
+  ) {}
 
   ngOnInit() {
+    const cartItems = this.productService.cart.value;
+    console.log('cart: ', cartItems);
+
+    this.productService
+      .getProducts()
+      .pipe(take(1))
+      .subscribe((allProducts) => {
+        this.products = allProducts
+          .filter((p) => cartItems[p.id])
+          .map((fdProduct) => {
+            return { ...fdProduct, count: cartItems[fdProduct.id] };
+          });
+        console.log('products: ', this.products);
+      });
   }
 
+  async checkout() {
+    const alert = await this.alertCtrl.create({
+      header: 'Success',
+      message: 'Thanks for your order',
+      buttons: ['Continue shopping'],
+    });
+
+    await alert.present();
+
+    this.productService.checkoutCart();
+    this.modalCtrl.dismiss();
+  }
+
+  close() {
+    this.modalCtrl.dismiss();
+  }
 }
