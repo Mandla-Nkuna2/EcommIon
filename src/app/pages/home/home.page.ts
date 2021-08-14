@@ -1,21 +1,27 @@
-import { ProductService } from './../services/product.service';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ProductService } from '../../services/product.service';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   Animation,
   AnimationController,
   ModalController,
 } from '@ionic/angular';
-import { CartModalPage } from '../cart-modal/cart-modal.page';
+import { CartModalPage } from '../../cart-modal/cart-modal.page';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  products: Observable<any[]>;
+export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('myfab', { read: ElementRef }) cartBtn: ElementRef;
+  products: Observable<any[]>;
   cartAnimation: Animation;
   cart = {};
 
