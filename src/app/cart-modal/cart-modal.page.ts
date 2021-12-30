@@ -1,4 +1,4 @@
-import { ProductService } from './../services/product.service';
+import { ProductService } from '../services/productsService/product.service';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -27,9 +27,10 @@ export class CartModalPage implements OnInit {
       .subscribe((allProducts) => {
         this.products = allProducts
           .filter((p) => cartItems[p.id])
-          .map((fdProduct) => {
-            return { ...fdProduct, count: cartItems[fdProduct.id] };
-          });
+          .map((fdProduct) => ({
+            ...fdProduct,
+            count: cartItems[fdProduct.id],
+          }));
         console.log('products: ', this.products);
       });
   }

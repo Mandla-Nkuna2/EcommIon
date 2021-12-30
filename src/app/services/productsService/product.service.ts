@@ -40,10 +40,10 @@ export class ProductService {
         .collection('carts')
         .doc(this.cartKey)
         .valueChanges()
-        .subscribe((result: any) => {
-          console.log('cart changed: ', result);
-          delete result['lastUpdate'];
-          this.cart.next(result || {});
+        .subscribe((res: any) => {
+          console.log('cart changed: ', res);
+          delete res.lastUpdate;
+          this.cart.next(res || {});
         });
     } else {
       const fbDocument = await this.afs.collection('carts').add({

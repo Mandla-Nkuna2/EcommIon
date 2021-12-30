@@ -1,4 +1,4 @@
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/productsService/product.service';
 import {
   AfterViewInit,
   Component,

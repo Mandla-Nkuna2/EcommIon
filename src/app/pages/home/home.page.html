@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title> eCommIon </ion-title>
+    <ion-title> ecommate </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">eCommIon</ion-title>
+      <ion-title size="large">ecommate</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -39,7 +39,7 @@
           <ion-button
             (click)="removeFromCart($event, p)"
             fill="clear"
-            [disabled]="!cart[p.id] || cart[p.id] == 0"
+            [disabled]="!cart[p.id] || cart[p.id] === 0"
           >
             <ion-icon name="remove" slot="icon-only"></ion-icon>
           </ion-button>

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col
+      size="12"
+      size-sm="10"
+      offset-sm="1"
+      size-md="8"
+      offset-md="2"
+      size-lg="6"
+      offset-lg="3"
+      size-xl="4"
+      offset-xl="4"
+    >
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">Your Account</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <form [formGroup]="credsForm" (ngSubmit)="onSignin()">
+            <ion-item lines="none">
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input
+                type="text"
+                id="email"
+                formControlName="email"
+                class="form-control"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label position="stacked">Password</ion-label>
+              <ion-input
+                type="text"
+                id="password"
+                formControlName="password"
+                class="form-control"
+              ></ion-input
+            ></ion-item>
+
+            <ion-button
+              expand="block"
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!credsForm.valid"
+            >
+              Signin
+            </ion-button>
+
+            <ion-button
+              expand="block"
+              color="secondary"
+              routerLink="/signup"
+              routerDirection="forward"
+              >Register</ion-button
+            >
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
